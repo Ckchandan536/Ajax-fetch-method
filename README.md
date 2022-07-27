@@ -1,0 +1,1 @@
+# Ajax-fetch-method
