@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- style the table -->
+    <style>
+        table,th,td {
+            border : 1px solid rgb(248, 5, 5);
+            border-collapse: collapse;
+        }
+        th,td {
+            padding: 5px;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <button type="button" onclick="loadXMLDoc()">Get my CD collection</button>
+    <br><br>
+    <table id="demo"></table>
+
+    <script>
+        if(window.XMLHttpRequest)
+        {// this is for IE7+ ,firefox, opera
+            xmlhttp=new XMLHttpRequest();
+        }
+        else
+        {// this is for IE5 , IE6
+            xmlhttp=new ActiveXObject(
+            "Microsoft.XMLHTTP");
+        }
+    xmlhttp.open("GET","cd_catalog.xml",false);
+    xmlhttp.send();
+    xmlDoc=xmlhttp.responseXML;
+
+    document.write("<table border='1 width='50%'style='font-size:35px;'>");
+    // this line will write table tag on html document
+    document.write("<tr> <th>TITLE</th> <th>ARTIST</th> <th>COUNTRY</th> <th>PRICE</th> <th>YEAR</th> </tr>");
+
+    var x=xmlDoc.getElementsByTagName("CD")
+    // This line will store array of object in variable x
+    for(i=0; i<x.length;i++)
+    {
+        document.write("<tr><td>");
+
+            document.write(xmlDoc.getElementsByTagName
+            ("TITLE")[i].childNodes[0].nodeValue);
+            document.write("</td><td>");
+
+            document.write(xmlDoc.getElementsByTagName
+            ("ARTIST")[i].childNodes[0].nodeValue);
+            document.write("</td><td>");
+
+            document.write(xmlDoc.getElementsByTagName
+            ("COUNTRY")[i].childNodes[0].nodeValue);
+            document.write("</td><td>");
+
+            document.write(xmlDoc.getElementsByTagName
+            ("PRICE")[i].childNodes[0].nodeValue);
+            document.write("</td><td>");
+
+            document.write(xmlDoc.getElementsByTagName
+            ("YEAR")[i].childNodes[0].nodeValue);
+            document.write("</td><td>");
+
+    }
+        document.write("</table>");
+
+
+
+        
+    </script>
+    
+</body>
+</html>
